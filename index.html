@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multiplication</title>
+    <style>
+        body {
+            background-color: #212121;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #b4b4b4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            padding: 15px 40px;
+            background-color: #303030;
+            border: 1px solid;
+            color: #bebebe;
+            font-size: 2rem;
+            border-radius: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template: 1fr 1fr/1fr 1fr;
+            gap: 2rem;
+            height: 300px;
+            width: 90%;
+            padding-bottom: 2rem;
+        }
+
+        .correct {
+            background-color: green;
+        }
+
+        .wrong {
+            background-color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex">
+        <p>score: <span class="score"></span>/25 - CountDown: <span class="count"></span></p>
+        <h1>جدول الضرب</h1>
+
+    </div>
+    <h2><span class="question">3 × 4</span> ?</h2>
+    <div class="grid">
+        <button class="option a">0</button>
+        <button class="option b">0</button>
+        <button class="option c">0</button>
+        <button class="option d">0</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
