@@ -123,6 +123,7 @@ function incorrect(btnCorrect, btnWrong) {
     btnWrong.classList.add('wrong');
     btnCorrect.classList.add('correct');
     score = 0;
+    scoreLabel.textContent = score;
     btnCorrect.disabled = true;
     setTimeout(() => {
         btnWrong.classList.remove('wrong');
