@@ -7,37 +7,10 @@ let countDown = 20
 let count = countDown;
 let interval;
 let arr = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    14,
-    16,
-    18,
-    20,
-    22,
-    24,
-    15,
-    21,
-    27,
-    30,
-    33,
     36,
-    28,
-    32,
     40,
     44,
     48,
-    25,
-    35,
     45,
     50,
     55,
@@ -72,7 +45,13 @@ let correctAnswer = 0;
 let correctElement;
 let timeOut;
 function random() {
-    return Math.floor(Math.random() * 10) + 3
+    let rand1 = Math.floor(Math.random() * 10) + 3
+    let rand2 = Math.floor(Math.random() * 10) + 3
+    if (rand1 < 6 || rand2 < 6 || rand1 === rand2 || rand1 === 11 || rand2 === 11 || rand1 === 10 || rand2 === 10) {
+        return random()
+    }
+    console.log(rand1, rand2)
+    return { num1: rand1, num2: rand2 }
 }
 function displayOptions(num1, num2) {
     let correct = Math.floor(Math.random() * 4)
@@ -81,13 +60,13 @@ function displayOptions(num1, num2) {
         if (i === correct)
             element.innerHTML = num1 * num2
         else
-            element.innerHTML = Math.floor(Math.random() * arr.length) + 1
+            element.innerHTML = Math.floor(Math.random() * arr.length) + 1 // task : elemenate dublicates
     });
     correctAnswer = num1 * num2;
 }
 function nextQuestion() {
-    let num1 = random();
-    let num2 = random();
+    let { num1, num2 } = random();
+
     questionText.textContent = `${num1} × ${num2}`;
     displayOptions(num1, num2)
     resetCountdown();
