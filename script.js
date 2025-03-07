@@ -8,34 +8,19 @@ let count = countDown;
 let interval;
 let arr = [
     36,
-    40,
-    44,
     48,
     45,
-    50,
-    55,
-    60,
     42,
     54,
-    66,
     72,
     49,
     56,
     63,
-    70,
-    77,
     84,
     64,
-    80,
-    88,
     96,
     81,
-    90,
-    99,
     108,
-    100,
-    110,
-    120,
     121,
     132,
     144
@@ -53,14 +38,21 @@ function random() {
     console.log(rand1, rand2)
     return { num1: rand1, num2: rand2 }
 }
+function randAnswers() {
+    let rand = Math.floor(Math.random() * arr.length)
+    return arr[rand]
+}
 function displayOptions(num1, num2) {
-    let correct = Math.floor(Math.random() * 4)
-    correctElement = options[correct]
+    let setNums = new Set()
+    setNums.add(num1 * num2);
+    while (setNums.size < 4) {
+        setNums.add(randAnswers())
+    }
+    let arr = [...setNums];
+    arr.sort(() => Math.random() - 0.5)
     options.forEach((element, i) => {
-        if (i === correct)
-            element.innerHTML = num1 * num2
-        else
-            element.innerHTML = Math.floor(Math.random() * arr.length) + 1 // task : elemenate dublicates
+        element.textContent = arr[i]
+        if (arr[i] === num1 * num2) correctElement = element
     });
     correctAnswer = num1 * num2;
 }
