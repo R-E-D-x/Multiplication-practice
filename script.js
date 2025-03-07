@@ -1,4 +1,5 @@
 const body = document.querySelector('body');
+const nextBtn = document.querySelector('.next')
 const options = document.querySelectorAll('.option');
 const questionText = document.querySelector('.question');
 const scoreLabel = document.querySelector('.score');
@@ -61,7 +62,7 @@ function nextQuestion() {
 
     questionText.textContent = `${num1} × ${num2}`;
     displayOptions(num1, num2)
-    resetCountdown();
+
     startCountdown();
 }
 function congrats() {
@@ -69,6 +70,7 @@ function congrats() {
     options.forEach(element => element.textContent = '🎉')
 }
 function correct(btnCorrect) {
+    resetCountdown();
     btnCorrect.classList.add('correct');
     scoreLabel.textContent = ++score;
     if (score >= 25) {
@@ -82,28 +84,37 @@ function correct(btnCorrect) {
     if (score >= 15) {
         countDown = 10
     }
+    body.classList.add('correct')
+
     btnCorrect.disabled = true;
     setTimeout(() => {
-        btnCorrect.classList.remove('correct');
-        btnCorrect.disabled = false;
-        nextQuestion()
-    }, 1000);
+        body.classList.remove('correct')
+
+        setTimeout(() => {
+            btnCorrect.classList.remove('correct');
+            btnCorrect.disabled = false;
+            nextQuestion()
+        }, 500);
+    }, 500);
 }
 function incorrect(btnCorrect, btnWrong) {
-
+    resetCountdown();
     btnWrong.classList.add('wrong');
     btnCorrect.classList.add('correct');
+    body.classList.add('wrong')
+
     score = 0;
     scoreLabel.textContent = score;
     btnCorrect.disabled = true;
-    setTimeout(() => {
-        btnWrong.classList.remove('wrong');
-        btnCorrect.classList.remove('correct');
-        btnCorrect.disabled = false;
-        nextQuestion();
-    }, 3000);
 
+    setTimeout(() => {
+        body.classList.remove('wrong')
+        nextBtn.classList.remove('hidden')
+    }, 500);
 }
+nextBtn.addEventListener('click', () => {
+    location.reload()
+})
 scoreLabel.textContent = score;
 nextQuestion();
 options.forEach(option => {
